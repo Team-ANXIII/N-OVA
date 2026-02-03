@@ -137,3 +137,19 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Live2D models and runtime (do not commit)
+server/front/public/live2d/**
+!server/front/public/live2d/README.txt
+
+# .NET / Visual Studio
+bin/
+obj/
+.vs/
+*.user
+*.suo
