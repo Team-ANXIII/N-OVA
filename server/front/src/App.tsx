@@ -24,16 +24,24 @@ export default function App() {
   const [status, setStatus] = useState<string>("Live2D 모델을 로드하세요.");
   const [isModelLoading, setIsModelLoading] = useState(false);
 
+  const [gazeCenter, setGazeCenter] = useState({ x: 0.15, y: -1.0 });
+
   useEffect(() => {
     if (!canvasRef.current) return;
     const driver = new PixiLive2DDriver(canvasRef.current);
-    const avatarController = new AvatarController(driver);
+    const avatarController = new AvatarController(driver, {
+      gazeCenter
+    });
     setController(avatarController);
 
     return () => {
       avatarController.dispose();
     };
   }, []);
+
+  useEffect(() => {
+    controller?.setGazeConfig({ gazeCenter });
+  }, [controller, gazeCenter]);
 
   useEffect(() => {
     const audio = audioRef.current;
